@@ -1,4 +1,4 @@
-require 'DiaryEntry'
+require_relative '../lib/DiaryEntry'
 
 TWO_HUNDRED_WORDS = (["test"] * 200).join(" ")
 THREE_HUNDRED_WORDS = (["test"] * 300).join(" ")
@@ -43,20 +43,20 @@ RSpec.describe DiaryEntry do
         expect(result).to eq 10
     end
 
-    xit "takes text with wpm and minutes and gives a chunk of text that can be read in that time" do
+    it "takes text with wpm and minutes and gives a chunk of text that can be read in that time" do
         diary_entry1 = DiaryEntry.new("Some Words", "Today is the third day of snow and I love it.")
         result = diary_entry1.reading_chunk(3, 2)
         expect(result).to eq "Today is the third day of"
     end
 
-    xit "returns a chunk of text and then returns next chunk of text" do
+    it "returns a chunk of text and then returns next chunk of text" do
         diary_entry1 = DiaryEntry.new("Some Words", "Today is the third day of snow and I love it.")
         diary_entry1.reading_chunk(4, 1)
         result = diary_entry1.reading_chunk(2, 3)
         expect(result).to eq "day of snow and I love"
     end
 
-    xit "return all text in multiple chunks even when last chunk is greater than length of text" do
+    it "return all text in multiple chunks even when last chunk is greater than length of text" do
         diary_entry1 = DiaryEntry.new("Some Words", "Today is the third day of snow and I love it.")
         diary_entry1.reading_chunk(4, 1)
         diary_entry1.reading_chunk(2, 3)
@@ -64,7 +64,7 @@ RSpec.describe DiaryEntry do
         expect(result).to eq "it."
     end
 
-    xit "return all text in a chunk and then starts again with a new chunk" do
+    it "return all text in a chunk and then starts again with a new chunk" do
         diary_entry1 = DiaryEntry.new("Some Words", "Today is the third day of snow and I love it.")
         diary_entry1.reading_chunk(11, 1)
         result = diary_entry1.reading_chunk(2, 2)

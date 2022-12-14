@@ -82,5 +82,33 @@ RSpec.describe DiaryEntry do
         result = diary_entry1.reading_chunk(2, 2)
         expect(result).to eq "A sentence."
     end
+
+    context "when contents are not valid" do
+        it ": not a string (boolean)" do
+            expect { diary_entry1 = DiaryEntry.new("Boolean", true) }.to raise_error "Please enter string in contents!"
+        end
+
+        it ": is empty" do
+            expect { diary_entry1 = DiaryEntry.new("Empty", "") }.to raise_error "Contents are empty!"
+        end
+
+        it ": is empty" do
+            expect { diary_entry1 = DiaryEntry.new("Some Spaces", "    ") }.to raise_error "Contents are empty!"
+        end
+    end
+
+    context "when title is not valid" do
+        it ": not a string (boolean)" do
+            expect { diary_entry1 = DiaryEntry.new(true, "Boolean") }.to raise_error "Please enter string in title!"
+        end
+
+        it ": is empty" do
+            expect { diary_entry1 = DiaryEntry.new("", "Empty") }.to raise_error "Title is empty!"
+        end
+
+        it ": is empty" do
+            expect { diary_entry1 = DiaryEntry.new("    ", "Some Spaces") }.to raise_error "Title is empty!"
+        end
+    end
 end
 

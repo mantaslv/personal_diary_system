@@ -1,5 +1,9 @@
 class DiaryEntry
     def initialize(title, contents) # title, contents are strings
+        fail "Please enter string in title!" unless title.is_a? String
+        fail "Title is empty!" if title == "" || title.match?(/^\s+$/)
+        fail "Please enter string in contents!" unless contents.is_a? String
+        fail "Contents are empty!" if contents == "" || contents.match?(/^\s+$/)
         @title = title
         @contents = contents
         @bookmark = 0 # no. of words read

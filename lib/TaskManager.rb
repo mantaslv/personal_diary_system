@@ -6,6 +6,8 @@ class TaskManager
 
     def add(task) # task is a string
       # string message saying task was added
+        fail "Please enter text only!" unless task.is_a? String
+        fail "Please enter some text!" if task.match?(/^\s*$/)
         @task_arr.push(task)
         return "Task was added: " + task
     end
@@ -23,7 +25,11 @@ class TaskManager
     def complete(task) # task is a string
       # throws exception if task does not exist
       # string message saying task was completed and removed from list
-        @task_arr.delete(task)
-        return task + " was completed and removed from your list."
+        if @task_arr.include? task
+          @task_arr.delete(task)
+          return task + " was completed and removed from your list."
+        else
+          return task + " is not in your tasks."
+        end
     end
 end

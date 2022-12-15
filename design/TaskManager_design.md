@@ -54,11 +54,16 @@ task_manager.list                   # => "You have no tasks to complete!"
 
 # 2
 task_manager = TaskManager.new
-task_manager.add("Walk dog")        # => "Task was added: Walk dog"
-task_manager.add("Water plants")    # => "Task was added: Water plants"
+task_manager.add("Walk dog")        
+task_manager.add("Water plants")    
 task_manager.list                   # => "These are your tasks: Walk Dog, Water plants."
-task_manager.complete("Walk Dog")   # => "Walk Dog was completed and removed from your list."
+task_manager.complete("Walk Dog")   
 task_manager.list                   # => "These are your tasks: Water plants."
+
+# 3
+task_manager = TaskManager.new
+task_manager.add("Walk dog")            
+task_manager.complete("Water plants")   # => "Water plants is not in your tasks."
 ```
 
 _Encode each example as a test. You can add to the above list as you go._
